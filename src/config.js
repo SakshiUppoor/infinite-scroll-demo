@@ -1,0 +1,3 @@
+export const ENDPOINT = "YOUR_APPWRITE_ENDPOINT";
+export const PROJECT_ID = "YOUR_PROJECT_ID";
+export const COLLECTION_ID = "YOUR_COLLECTION_ID";
