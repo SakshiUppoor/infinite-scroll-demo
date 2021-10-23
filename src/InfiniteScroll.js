@@ -14,7 +14,7 @@ appwrite
 const InfiniteScroll = () => {
     const [posts, setPosts] = useState([]); 
     const [offset, setOffset] = useState(0);
-    const [hasMore, setHasMore] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
     const [loading, setLoading] = useState(true)
     const OFFSET_INCREMENT = 3;
 
@@ -32,16 +32,18 @@ const InfiniteScroll = () => {
 
     useEffect(() => {
         setLoading(true);
-        let promise = appwrite.database.listDocuments(COLLECTION_ID, [], OFFSET_INCREMENT, offset);
-        promise.then(function (res) {
-            console.log(res); // Success
-            const newList = posts.concat(res.documents);
-            setPosts([...new Set(newList)]);
-            setHasMore(res.documents.length > 0);
-            setLoading(false);
-        }, function (error) {
-            console.log(error); // Failure
-        });
+        setTimeout(()=>{
+            let promise = appwrite.database.listDocuments(COLLECTION_ID, [], OFFSET_INCREMENT, offset);
+            promise.then(function (res) {
+                console.log(res); // Success
+                const newList = posts.concat(res.documents);
+                setPosts([...new Set(newList)]);
+                setHasMore(res.documents.length > 0);
+                setLoading(false);
+            }, function (error) {
+                console.log(error); // Failure
+            });
+        }, 2000);
     }, [offset])
 
     return (
@@ -81,8 +83,8 @@ const InfiniteScroll = () => {
                     }
                 })
             }
-             { loading && <div className="loading"> Loading </div> }
-             { !hasMore && <div className="footer"> THE END </div> }             
+            { loading && <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> }
+            { !hasMore && <div className="footer"> You have reached the end! </div> }             
         </div>
     </div>)
 }
