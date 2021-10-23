@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback  } from 'react';
 import { Appwrite } from "appwrite";
 import { ENDPOINT, PROJECT_ID, COLLECTION_ID } from "./config";
+import "./InfiniteScroll.css";
 
 // Init Web SDK
 const appwrite = new Appwrite();
