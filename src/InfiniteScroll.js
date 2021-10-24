@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useCallback  } from 'react';
 import { Appwrite } from "appwrite";
 import { ENDPOINT, PROJECT_ID, COLLECTION_ID } from "./config";
 import "./InfiniteScroll.css";
+import addPosts from './load';
 
 // Init Web SDK
 const appwrite = new Appwrite();
@@ -16,9 +17,10 @@ const InfiniteScroll = () => {
     const [offset, setOffset] = useState(0);
     const [hasMore, setHasMore] = useState(true);
     const [loading, setLoading] = useState(true)
+    const [emptyCollection, setEmptyCollection] = useState(false);
     const OFFSET_INCREMENT = 3;
 
-    const observer = useRef()
+    const observer = useRef();
     const lastBookElementRef = useCallback(node => {
         if (loading) return
         if (observer.current) observer.current.disconnect()
@@ -30,24 +32,38 @@ const InfiniteScroll = () => {
         if (node) observer.current.observe(node)
     }, [loading, hasMore])
 
-    useEffect(() => {
-        setLoading(true);
-        setTimeout(()=>{
-            let promise = appwrite.database.listDocuments(COLLECTION_ID, [], OFFSET_INCREMENT, offset);
+    const fetchPosts = () => {
+        let promise = appwrite.database.listDocuments(COLLECTION_ID, [], OFFSET_INCREMENT, offset);
             promise.then(function (res) {
                 console.log(res); // Success
                 const newList = posts.concat(res.documents);
                 setPosts([...new Set(newList)]);
                 setHasMore(res.documents.length > 0);
                 setLoading(false);
+                setEmptyCollection(res.sum === 0);
             }, function (error) {
                 console.log(error); // Failure
             });
+    }
+
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(()=>{
+            fetchPosts();
         }, 2000);
     }, [offset])
 
     return (
     <div className="container">
+        { 
+            emptyCollection && 
+            <div className="empty-state-container">
+                <div className="empty-state">
+                    <p className="app-desc">Looks like there are no posts yet.</p> 
+                    <button onClick={()=>{if(addPosts(appwrite)) fetchPosts()}}>Add Posts</button>
+                </div>
+            </div> 
+        }
         <div className="posts-list">
             {
                 posts.map((post, index) => {
@@ -83,8 +99,8 @@ const InfiniteScroll = () => {
                     }
                 })
             }
-            { loading && <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> }
-            { !hasMore && <div className="footer"> You have reached the end! </div> }             
+            { loading && <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div> }
+            { !emptyCollection && !hasMore && <div className="footer"> You have reached the end! </div> }             
         </div>
     </div>)
 }

@@ -150,3 +150,26 @@ code {
         transform: translate(24px, 0);
     }
 }
+
+.empty-state-container {
+    height: 69vh;
+    width: 100vw;
+    text-align: center;
+}
+
+.empty-state {
+    margin: auto;
+    vertical-align: middle;
+    position: relative;
+    top: 50%;
+}
+
+button {
+    background: #5a67d8;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 0.5em;
+    margin: 1em;
+    color: #ffffffb0;
+}
