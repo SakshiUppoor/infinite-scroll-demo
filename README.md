@@ -1,18 +1,20 @@
 
 # Infinite Scroll Demo
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/46474346/138585064-5a8d7e92-ab4e-4845-8620-91ddbc31d066.png" width="200px">
+</p>
+<p align="center">
 A simple React JS + Appwrite project to demonstrate infinite scroll paging.
-
+</p>
 
 ## Demo
 
-https://user-images.githubusercontent.com/46474346/138567055-73e3b9d9-092c-41ea-b361-5039a3b5678e.mp4
+https://user-images.githubusercontent.com/46474346/138588734-fbc26a33-ab23-4297-a449-082efbde9bce.mp4
 
+## Run locally
 
-
-## Installation
-
-1. Set up [Appwrite for Web](https://appwrite.io/docs/installation).
+1. Install Appwrite by following the [installation guide](https://appwrite.io/docs/installation).
 
 2. Open the Appwrite console and create a new project.
 
@@ -23,11 +25,11 @@ https://user-images.githubusercontent.com/46474346/138567055-73e3b9d9-092c-41ea-
 #### Rules:
 
 | Label     | Key        | Type      | Required | Array | Default Value |
-| :-------- | :--------- | :-------- | :------- | :-------- | :-------- | 
-| Username | `username` | Text      | `true`   | false |  |
-| Avatar | `avatar` | URL      | `true`   | false | |
-| Location | `location` | Text      | `false`   | false | |
-| Image | `imageUrl` | URL      | `true`   | false | |
+| :-------- | :--------- | :-------- | :------- | :---- | :------------ | 
+| Username  | `username` | Text      | `true`   | false |               |
+| Avatar    | `avatar`   | URL       | `true`   | false |               |
+| Location  | `location` | Text      | `false`  | false |               |
+| Image     | `imageUrl` | URL       | `true`   | false |               |
 
 #### Permissions:
 
