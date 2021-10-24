@@ -12,28 +12,49 @@ https://user-images.githubusercontent.com/46474346/138567055-73e3b9d9-092c-41ea-
 
 ## Installation
 
-1. Set up [Appwrite for Web](https://appwrite.io/docs/getting-started-for-web).
+1. Set up [Appwrite for Web](https://appwrite.io/docs/installation).
 
-2. Clone this repo
+2. Open the Appwrite console and create a new project.
+
+3. Navigate to `Database` and add a new `Collection` called `Photos`.
+
+4. Add the following rules and permissions:
+
+#### Rules:
+
+| Label     | Key        | Type      | Required | Array | Default Value |
+| :-------- | :--------- | :-------- | :------- | :-------- | :-------- | 
+| Username | `username` | Text      | `true`   | false |  |
+| Avatar | `avatar` | URL      | `true`   | false | |
+| Location | `location` | Text      | `false`   | false | |
+| Image | `imageUrl` | URL      | `true`   | false | |
+
+#### Permissions:
+
+Read Access: `*`
+
+Write Access: `*`
+
+3. Clone this repo
 ```bash
   git clone https://github.com/SakshiUppoor/infinite-scroll-demo.git
   cd infinite-scroll-demo
 ```
 
-3. Install dependencies
+4. Install dependencies
 ```bash
   npm install
 ```
 
-4. Enter your app details in `src/config.js`
+5. From the Appwrite console, note down the `API Endpoint`, `Project ID` and `Collection ID` of the `Photos` Collection and enter these in `src/config.js`.
 
-5. The project is ready to run! :rocket:
+6. The project is ready to run! :rocket:
 ```bash
   npm start
 ```
     
 ## Acknowledgements
 
- - [Appwrite](https://appwrite.io/)
- - [Faker.js](https://github.com/Marak/Faker.js)
- - [Lorem Picsum](https://picsum.photos/)
+ - [Appwrite](https://appwrite.io/) - End-to-end Backend Server
+ - [Faker.js](https://github.com/Marak/Faker.js) - Mock user data for demo
+ - [Lorem Picsum](https://picsum.photos/) - Mock photos for demo
