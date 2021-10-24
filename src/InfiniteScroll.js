@@ -12,6 +12,14 @@ appwrite
     .setProject(PROJECT_ID)
 ;
 
+let promise = appwrite.account.createAnonymousSession();
+
+promise.then(function (response) {
+    console.log(response); // Success
+}, function (error) {
+    console.log(error); // Failure
+});
+
 const InfiniteScroll = () => {
     const [posts, setPosts] = useState([]); 
     const [offset, setOffset] = useState(0);
@@ -33,7 +41,7 @@ const InfiniteScroll = () => {
     }, [loading, hasMore])
 
     const fetchPosts = () => {
-        let promise = appwrite.database.listDocuments(COLLECTION_ID, [], OFFSET_INCREMENT, offset);
+        promise = appwrite.database.listDocuments(COLLECTION_ID, [], OFFSET_INCREMENT, offset);
             promise.then(function (res) {
                 console.log(res); // Success
                 const newList = posts.concat(res.documents);
