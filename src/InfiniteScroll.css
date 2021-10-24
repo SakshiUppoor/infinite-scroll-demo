@@ -91,8 +91,8 @@ code {
 }
 
 .container {
-    max-width: '100vw';
-    margin: 'auto';
+    max-width: 100vw;
+    margin: auto;
 }
 
 .lds-ellipsis {
@@ -173,3 +173,36 @@ button {
     margin: 1em;
     color: #ffffffb0;
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .image-card, .metadata {
+        width: 90vw;
+    }
+    .posted_by {
+        font-size: initial;
+    }
+    .location {
+        font-size: 14px;
+    }
+    .avatar-container {
+        margin-right: 13px;
+    }
+    .post {
+        margin: 2.7rem 0;
+    }
+    .metadata{
+        margin-bottom: 0.5rem;
+    }
+    .avatar {
+        width: 30px;
+        height: 30px;
+        vertical-align: -webkit-baseline-middle;
+    }
+    .app-title {
+        font-size: 32px;
+    }
+    .app-desc {
+        font-size: 14px;
+    }
+  }
